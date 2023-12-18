@@ -1,12 +1,13 @@
-from langchain.chat_models import ChatOpenAI, ChatOllama
+from typing import Any, Dict, List, Union
+from copy import deepcopy
+
+from langchain.chat_models import ChatOllama
 from langchain.graphs import Neo4jGraph
 from langchain.chains import GraphCypherQAChain
 from langchain.prompts import PromptTemplate
 
 from langchain.callbacks.base import BaseCallbackHandler
-from typing import Any, Dict, List, Union
-from copy import deepcopy
-from langchain.schema import AgentAction
+
 from langchain_core.outputs import LLMResult
 from langchain.callbacks.utils import (
     BaseMetadataCallbackHandler,
@@ -106,24 +107,24 @@ Question: {question}
     return out
 
 
+if __name__ == "__main__":
+    models = ['openchat:7b-v3.5-q2_K','llama2:13b','codellama:7b-instruct','deepseek-coder:latest']
+    questions = {"How many pods have default namespace?":[2, "two"],"How many containers have default namespace?":[4, 'four']}
 
-models = ['openchat:7b-v3.5-q2_K','llama2:13b','codellama:7b-instruct','deepseek-coder:latest']
-questions = {"How many pods have default namespace?":[2, "two"],"How many containers have default namespace?":[4, 'four']}
-
-attempts = 3
-for model in models:
-    print(f"Test model - {model}")
-    correct_answer_counter = 0
-    for attempt in range(attempts):
-        for question in questions.keys():
-            try:
-                gen_answer = run_question(model, question)
-                if any( str(correct_reply) in gen_answer.lower() for correct_reply in questions.get(question) ):
-                    correct_answer_counter += 1
-                    metrics['correct_answers']=correct_answer_counter
-                metrics['total_answers']=attempts + len(questions) + 1
-                send(metrics)
-                metrics.clear()
-            except Exception as e:
-                metrics.clear()
-                print("Произошла ошибка:", e)
+    attempts = 3
+    for model in models:
+        print(f"Test model - {model}")
+        correct_answer_counter = 0
+        for attempt in range(attempts):
+            for question in questions.keys():
+                try:
+                    gen_answer = run_question(model, question)
+                    if any( str(correct_reply) in gen_answer.lower() for correct_reply in questions.get(question) ):
+                        correct_answer_counter += 1
+                        metrics['correct_answers']=correct_answer_counter
+                    metrics['total_answers']=attempts + len(questions) + 1
+                    send(metrics)
+                    metrics.clear()
+                except Exception as e:
+                    metrics.clear()
+                    print("Произошла ошибка:", e)

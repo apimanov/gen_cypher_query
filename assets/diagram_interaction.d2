@@ -1,0 +1,7 @@
+shape: sequence_diagram
+user -> langchain: question?
+langchain <-> neo4j: get db scheme
+langchain <-> llm: generate Cypher query
+langchain <-> neo4j: run Cypher
+langchain <-> llm: handle Cypher result
+langchain -> user: answer

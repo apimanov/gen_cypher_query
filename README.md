@@ -40,52 +40,27 @@ docker run \
 cartography --neo4j-uri bolt://localhost:7687 --k8s-kubeconfig ~/.kube/config
 ```
 #### В результате мы получаем граф сущностей k8s в Neo4J
-![Узлы и связи графа сущностей кубернетеса](graph.svg)
+![Узлы и связи графа сущностей кубернетеса](./assets/graph.svg)
 
 - Установим LLM в ввиде Ollama - это менеджер lama моделей https://github.com/jmorganca/ollama
 - Установим второй инструмент для использования LLM text-generation-webui - https://github.com/oobabooga/text-generation-webui
-- Необходимо установить библиотеки langchain, openai, neo4j для python, чтобы использовать api для llm
+- Необходимо установить библиотеки langchain, openai, neo4j, prometheus_client для python, чтобы использовать api для llm
 
 ## Diagram <a name = "diagram"></a>
 
 ### Диаграмма компонентов
 
-```d2 layout=elk theme=101
-k8s -> cartography -> neo4j
-user -> langchain -> llm -> user
-langchain <-> neo4j
-user: {shape: image
-icon: https://icons.terrastruct.com/essentials%2F365-user.svg}
-llm: {shape: image
-icon: https://icons.terrastruct.com/essentials%2F092-network.svg}
-k8s: {shape: image
- icon: https://www.vectorlogo.zone/logos/kubernetes/kubernetes-icon.svg}
-cartography: {shape: image
- icon: https://lyft.github.io/cartography/_static/logo-vertical.svg}
-neo4j: { shape: image
-  icon: https://www.vectorlogo.zone/logos/neo4j/neo4j-icon.svg}
-```
+![diagram_component](./assets/diagram_component.svg)
 
 ### Диаграмма взаимодействия
 
-
-```d2 layout=elk theme=101
-shape: sequence_diagram
-user -> langchain: question?
-langchain <-> neo4j: get db scheme
-langchain <-> llm: generate Cypher query
-langchain <-> neo4j: run Cypher
-langchain <-> llm: handle Cypher result
-langchain -> user: answer
-
-
-```
+![diagram_interuction](./assets/diagram_interaction.svg)
 
 
 ## Usage <a name = "usage"></a>
 
 ./query_ollama.py <br>
-[_Лог запуска скрипта тестирования ollama моделей_](./ollama-models-tests.log)
+[_Лог запуска скрипта тестирования ollama моделей_](./assets/ollama-models-tests.log)
 
 ./query_openai.pi
 
@@ -94,4 +69,4 @@ langchain -> user: answer
 
 Результаты тестирования моделей
 
-<image src="grafana-ollama.png" alt="Дашборд тестирования Ollama моделей">
+<image src="./assets/grafana-ollama.png" alt="Дашборд тестирования Ollama моделей">
