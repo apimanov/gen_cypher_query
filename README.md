@@ -6,7 +6,7 @@
 - [Install](#install)
 - [Usage](#usage)
 - [Diagram](#diagramm)
-- [Dasboard](#dashborad)
+- [Dasboard and tests](#dashborad)
 
 
 ## About <a name = "about"></a>
@@ -62,11 +62,15 @@ cartography --neo4j-uri bolt://localhost:7687 --k8s-kubeconfig ~/.kube/config
 ./query_ollama.py <br>
 [_Лог запуска скрипта тестирования ollama моделей_](./assets/ollama-models-tests.log)
 
-./query_openai.pi
+[_Лог запуска скрипта тестирования ollama моделей temperature:0.8 (default)_](./assets/ollama-models-test-default-temperature.log)
 
 
 ## Dashboard <a name = "dashborad"></a>
 
 Результаты тестирования моделей
 
+- параметр temperature = 0.0
 <image src="./assets/grafana-ollama.png" alt="Дашборд тестирования Ollama моделей">
+
+- параметр temperature = 0.8 (default)
+<image src="./assets/test_default_temperature.png" alt="Дашборд тестирования Ollama моделей - temperature по умолчанию">

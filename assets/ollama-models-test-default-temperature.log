@@ -1,0 +1,404 @@
+Test model - openchat:7b-v3.5-q2_K
+
+
+> Entering new GraphCypherQAChain chain...
+Generated Cypher:
+ MATCH (n:KubernetesNamespace {name:'default'})-[:HAS_POD]->(m) RETURN count(m) as pods
+Full Context:
+[{'pods': 2}]
+
+> Finished chain.
+ The default namespace has 2 pods.
+
+
+> Entering new GraphCypherQAChain chain...
+Generated Cypher:
+ MATCH (n:KubernetesNamespace {name:'default'})-[:HAS_POD]->(pod)-[:HAS_CONTAINER]->(containers) RETURN count(containers) as containers
+Full Context:
+[{'containers': 4}]
+
+> Finished chain.
+ The given information doesn't include the number of containers with default namespace.
+
+
+> Entering new GraphCypherQAChain chain...
+Generated Cypher:
+ MATCH (n:KubernetesNamespace {name:'default'})-[:HAS_POD]->(m) RETURN count(m) as pods
+Full Context:
+[{'pods': 2}]
+
+> Finished chain.
+ The default namespace has 2 pods.
+
+
+> Entering new GraphCypherQAChain chain...
+Generated Cypher:
+ MATCH (n:KubernetesNamespace {name:'default'})-[:HAS_POD]->(pod)-[:HAS_CONTAINER]->(containers) RETURN count(containers) as containers
+Full Context:
+[{'containers': 4}]
+
+> Finished chain.
+ The information provided doesn't indicate the number of containers with default namespace.
+
+
+> Entering new GraphCypherQAChain chain...
+Generated Cypher:
+ MATCH (n:KubernetesNamespace {name:'default'})-[:HAS_POD]->(m) RETURN count(m) as pods
+Full Context:
+[{'pods': 2}]
+
+> Finished chain.
+ The default namespace has 2 pods.
+
+
+> Entering new GraphCypherQAChain chain...
+Generated Cypher:
+ MATCH (n:KubernetesNamespace {name:'default'})-[:HAS_POD]->(pod)-[:HAS_CONTAINER]->(containers) RETURN count(containers) as containers
+Full Context:
+[{'containers': 4}]
+
+> Finished chain.
+ There are 4 containers with default namespace.
+Test model - llama2:13b
+
+
+> Entering new GraphCypherQAChain chain...
+Generated Cypher:
+MATCH (n:KubernetesNamespace {name:'default'})-[:HAS_POD]->(m) RETURN count(m) as pods
+Full Context:
+[{'pods': 2}]
+
+> Finished chain.
+Two pods have default namespace.
+
+
+> Entering new GraphCypherQAChain chain...
+Generated Cypher:
+MATCH (n:KubernetesNamespace {name: "default"})-[:HAS_CONTAINER]->(m) RETURN count(m) as containers
+Full Context:
+[{'containers': 0}]
+
+> Finished chain.
+Hello! Based on the information provided, there are 0 containers with default namespace.
+
+
+> Entering new GraphCypherQAChain chain...
+Generated Cypher:
+MATCH (n:KubernetesNamespace {name:"default"})-[:HAS_POD]->(m) RETURN count(m) as pods
+Full Context:
+[{'pods': 2}]
+
+> Finished chain.
+Ah, hello there! Based on the information provided, I can confidently tell you that there are 2 pods with default namespace.
+
+
+> Entering new GraphCypherQAChain chain...
+Generated Cypher:
+MATCH (n:KubernetesNamespace {name: 'default'})-[:HAS_CONTAINER]->(m) RETURN count(m) as containers
+Full Context:
+[{'containers': 0}]
+
+> Finished chain.
+Based on the provided information, there are no containers with a default namespace.
+
+
+> Entering new GraphCypherQAChain chain...
+Generated Cypher:
+MATCH (n:KubernetesNamespace {name:"default"})-[:HAS_POD]->(m) RETURN count(m) as pods
+Full Context:
+[{'pods': 2}]
+
+> Finished chain.
+Two pods have a default namespace.
+
+
+> Entering new GraphCypherQAChain chain...
+Generated Cypher:
+MATCH (n:KubernetesNamespace {name:"default"})-[:HAS_POD]->(m)
+RETURN count(m) as containers
+Full Context:
+[{'containers': 2}]
+
+> Finished chain.
+Ah, I see! Based on the information provided, there are 2 containers with a default namespace.
+Test model - codellama:7b-instruct
+
+
+> Entering new GraphCypherQAChain chain...
+Generated Cypher:
+
+MATCH (n:KubernetesNamespace {name: 'default'})-[:HAS_POD]->(m) RETURN count(m) as pods
+
+Full Context:
+[{'pods': 2}]
+
+> Finished chain.
+
+There are 2 pods in the default namespace.
+
+
+> Entering new GraphCypherQAChain chain...
+Generated Cypher:
+
+MATCH (n:KubernetesNamespace {name:'default'})
+RETURN count(m) as pods
+
+Произошла ошибка: Generated Cypher Statement is not valid
+{code: Neo.ClientError.Statement.SyntaxError} {message: Variable `m` not defined (line 3, column 14 (offset: 61))
+"RETURN count(m) as pods"
+              ^}
+
+
+> Entering new GraphCypherQAChain chain...
+Generated Cypher:
+
+MATCH (n:KubernetesNamespace {name:'default'})-[:HAS_POD]->(m) RETURN count(m) as pods
+
+Full Context:
+[{'pods': 2}]
+
+> Finished chain.
+The default namespace has 2 pods.
+
+
+> Entering new GraphCypherQAChain chain...
+Generated Cypher:
+
+(:KubernetesCluster)-[:HAS_NAMESPACE]->(:KubernetesNamespace)
+(:KubernetesNamespace)-[:HAS_POD]->(:KubernetesPod)
+(:KubernetesPod)-[:HAS_CONTAINER]->(:KubernetesContainer)
+
+Произошла ошибка: Generated Cypher Statement is not valid
+{code: Neo.ClientError.Statement.SyntaxError} {message: Invalid input '(': expected
+  "ALTER"
+  "CALL"
+  "CREATE"
+  "DEALLOCATE"
+  "DELETE"
+  "DENY"
+  "DETACH"
+  "DROP"
+  "DRYRUN"
+  "ENABLE"
+  "FOREACH"
+  "GRANT"
+  "LOAD"
+  "MATCH"
+  "MERGE"
+  "NODETACH"
+  "OPTIONAL"
+  "REALLOCATE"
+  "REMOVE"
+  "RENAME"
+  "RETURN"
+  "REVOKE"
+  "SET"
+  "SHOW"
+  "START"
+  "STOP"
+  "TERMINATE"
+  "UNWIND"
+  "USE"
+  "USING"
+  "WITH" (line 2, column 1 (offset: 1))
+"(:KubernetesCluster)-[:HAS_NAMESPACE]->(:KubernetesNamespace)"
+ ^}
+
+
+> Entering new GraphCypherQAChain chain...
+Generated Cypher:
+
+MATCH (n:KubernetesNamespace {name: 'default'})-[:HAS_POD]->(m) RETURN count(m) as pods
+
+Full Context:
+[{'pods': 2}]
+
+> Finished chain.
+The default namespace has 2 pods.
+
+
+> Entering new GraphCypherQAChain chain...
+Generated Cypher:
+
+MATCH (n:KubernetesNamespace {name:'default'})-[:HAS_POD]->(pod)-[:HAS_CONTAINER]->(container) RETURN count(container) as containers
+
+Full Context:
+[{'containers': 4}]
+
+> Finished chain.
+The answer to your question is 4 containers have the default namespace.
+Test model - deepseek-coder:latest
+
+
+> Entering new GraphCypherQAChain chain...
+Generated Cypher:
+cql
+MATCH (n:KubernetesNamespace {name:'default'})-[:HAS_POD]->(m) RETURN count(m) as pods; 
+
+Произошла ошибка: Generated Cypher Statement is not valid
+{code: Neo.ClientError.Statement.SyntaxError} {message: Invalid input 'cql': expected
+  "ALTER"
+  "CALL"
+  "CREATE"
+  "DEALLOCATE"
+  "DELETE"
+  "DENY"
+  "DETACH"
+  "DROP"
+  "DRYRUN"
+  "ENABLE"
+  "FOREACH"
+  "GRANT"
+  "LOAD"
+  "MATCH"
+  "MERGE"
+  "NODETACH"
+  "OPTIONAL"
+  "REALLOCATE"
+  "REMOVE"
+  "RENAME"
+  "RETURN"
+  "REVOKE"
+  "SET"
+  "SHOW"
+  "START"
+  "STOP"
+  "TERMINATE"
+  "UNWIND"
+  "USE"
+  "USING"
+  "WITH" (line 1, column 1 (offset: 0))
+"cql"
+ ^}
+
+
+> Entering new GraphCypherQAChain chain...
+Generated Cypher:
+There are two containers in the default namespace:
+1. Container-29384 (ID) - It has a status_started value of True and its image is 'ubuntu' with id 5b0c76eefaacffbdabfcddeceecbeaeba, which means it started successfully after being created in the default namespace.
+2. Container-81349 (ID) - It has a status_started value of True and its image is 'nginx' with id 5b0c76eefaacffbdabfcddeceecbeaeba, which means it started successfully after being created in the default namespace.
+
+Произошла ошибка: Generated Cypher Statement is not valid
+{code: Neo.ClientError.Statement.SyntaxError} {message: Invalid input 'There': expected
+  "ALTER"
+  "CALL"
+  "CREATE"
+  "DEALLOCATE"
+  "DELETE"
+  "DENY"
+  "DETACH"
+  "DROP"
+  "DRYRUN"
+  "ENABLE"
+  "FOREACH"
+  "GRANT"
+  "LOAD"
+  "MATCH"
+  "MERGE"
+  "NODETACH"
+  "OPTIONAL"
+  "REALLOCATE"
+  "REMOVE"
+  "RENAME"
+  "RETURN"
+  "REVOKE"
+  "SET"
+  "SHOW"
+  "START"
+  "STOP"
+  "TERMINATE"
+  "UNWIND"
+  "USE"
+  "USING"
+  "WITH" (line 1, column 1 (offset: 0))
+"There are two containers in the default namespace:"
+ ^}
+
+
+> Entering new GraphCypherQAChain chain...
+Generated Cypher:
+cypher
+MATCH (n:KubernetesNamespace {name:'default'})-[:HAS_POD]->(m) RETURN count(m);
+
+Full Context:
+[{'count(m)': 2}]
+
+> Finished chain.
+The information provided doesn't contain any specific data or context for the question, so it is impossible to provide a precise answer.
+However, if you were asking about how many pods have default namespace in Kubernetes (a common container platform), there would be approximately one million such services based on what I know at this time of writing. It'd vary depending upon your cluster size and the specific features enabled by each service type within it; for example, if you had some sort of multi-cluster setup or a federation system with multiple namespaces/clusters etc., that could potentially affect how many pods have default namespace in total based on these factors.
+
+
+
+> Entering new GraphCypherQAChain chain...
+Generated Cypher:
+cypher
+MATCH (n:KubernetesNamespace {name:'default'})-[:HAS_POD]->(m) RETURN count(m) as containers
+
+Full Context:
+[{'containers': 2}]
+
+> Finished chain.
+As an AI Programming Assistant, I must clarify that my primary function is to provide assistance and answer questions related specifically to computer science. The information provided does not seem like a question or request for help within this context because it appears incomplete in terms of the given input data (containers: 2).
+However from standard Kubernetes terminology if you have more than one container, each with its own namespace they can be considered as separate entities and would contain default namespaces. As per your statement "The information part contains [{'containers': 'number'}]", this is a bit ambiguous because without additional context it’s hard to give an accurate answer about the number of containers provided in that input data set or how many have different namespace settings as described above (as there could be multiple cases like having one container with no defined namespaces, and other ones).
+
+
+
+> Entering new GraphCypherQAChain chain...
+Generated Cypher:
+cypher
+MATCH (n:KubernetesNamespace {name:'default'})-[:HAS_POD]->(m) RETURN count(m) as pods 
+
+Full Context:
+[{'pods': 2}]
+
+> Finished chain.
+Information:
+[{'pods': 2}]
+Answer: [INST] There is only one pod in the default namespace. The information provided means there are two containers running with this setup, each serving a different purpose and potentially having access to some shared resources or data storage through volume mounts (i.e., persistent volumes). However note that if you're using Kubernetes namespaces for grouping purposes then yes we have one pod in the default namespace too!
+
+
+
+> Entering new GraphCypherQAChain chain...
+Generated Cypher:
+Given the schema and relationships, you can use Cypher to find out how many containers have a default namespace. 
+
+Here is an example of what your query might look like:
+```cql
+MATCH (n:KubernetesNamespace {name:'default'})-[:HAS_POD]->(m) RETURN count(m)-1 as pods; // -1 because we are counting the namespace, not just its containers. 
+This query will give you a single number indicating how many Pod nodes (containers in this context), have 'default'作为 their namespaces name property and they belong to KubernetesNamespace node type with "name: default" relationship from it along other properties defined by schema ie firstseen, lastupdated. The "-1" is used because we are counting the namespace not just its containers/pods
+
+Произошла ошибка: Generated Cypher Statement is not valid
+{code: Neo.ClientError.Statement.SyntaxError} {message: Invalid input 'Given': expected
+  "ALTER"
+  "CALL"
+  "CREATE"
+  "DEALLOCATE"
+  "DELETE"
+  "DENY"
+  "DETACH"
+  "DROP"
+  "DRYRUN"
+  "ENABLE"
+  "FOREACH"
+  "GRANT"
+  "LOAD"
+  "MATCH"
+  "MERGE"
+  "NODETACH"
+  "OPTIONAL"
+  "REALLOCATE"
+  "REMOVE"
+  "RENAME"
+  "RETURN"
+  "REVOKE"
+  "SET"
+  "SHOW"
+  "START"
+  "STOP"
+  "TERMINATE"
+  "UNWIND"
+  "USE"
+  "USING"
+  "WITH" (line 1, column 1 (offset: 0))
+"Given the schema and relationships, you can use Cypher to find out how many containers have a default namespace."
+ ^}
